@@ -40,10 +40,11 @@ async def sing(ctx):
 
 @bot.command()
 async def gpt(ctx, *input):
+    print('contacting gpt')
     if ctx.author.id == DENNIS_ID:
         dennis_count += 1
-    if dennis_count >= 10:
-        return
+        if dennis_count >= 10:
+            return
 
     prompt = ' '.join(input)
 
