@@ -2,8 +2,8 @@ from ..utils.c_log import log
 import openai
 
 @log('contacting gpt')
-async def gpt(ctx, *input):    
-    prompt = ' '.join(input)
+async def gpt(ctx):
+    prompt = ctx.message.content[4:].strip()
 
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
