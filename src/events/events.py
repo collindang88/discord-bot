@@ -1,4 +1,4 @@
-from ..utils.c_log import log
+from src.utils.c_log import log
 
 async def on_ready(bot):
     print(f'We have logged in as {bot.user}')

@@ -1,5 +1,6 @@
-from ..utils.c_log import log
+from src.utils.c_log import log
 import requests
+from src.utils.constants import OPENWEATHERMAP_API_KEY
 
 @log('getting weather')
 async def weather(ctx, *city):
@@ -7,9 +8,10 @@ async def weather(ctx, *city):
     url = 'https://api.openweathermap.org/data/2.5/weather'
     params = {
         'q': city,
-        'appid': '92c4c4a2500128b450532048b03d6f53',
+        'appid': OPENWEATHERMAP_API_KEY,
         'units': 'imperial'
     }
+
 
     response = requests.get(url, params=params)
 
@@ -25,4 +27,4 @@ async def weather(ctx, *city):
         await ctx.send(f'The temperature is {temp:.2f} °F.')
         await ctx.send(f'The humidity is {humidity}%.')
     else:
-        await ctx.send('Enter a valid location.')
+        await ctx.send(response.text)

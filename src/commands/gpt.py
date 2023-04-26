@@ -1,4 +1,4 @@
-from ..utils.c_log import log
+from src.utils.c_log import log
 import openai
 
 @log('contacting gpt')
