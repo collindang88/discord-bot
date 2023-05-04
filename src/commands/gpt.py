@@ -12,7 +12,7 @@ async def gpt(ctx):
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=messages
         )
         response_content = response.choices[0].message.content.strip()
@@ -23,3 +23,4 @@ async def gpt(ctx):
             
     except Exception as e:
         await ctx.send(f"Error: {str(e)}")
+
