@@ -1,0 +1,2 @@
+py-fmt:
+	black src/
