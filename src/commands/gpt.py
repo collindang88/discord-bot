@@ -12,7 +12,7 @@ async def gpt(ctx):
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-4-0314",
             messages=messages
         )
         response_content = response.choices[0].message.content.strip()
