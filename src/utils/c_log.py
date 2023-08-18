@@ -1,6 +1,9 @@
+# Standard Library
 import datetime
-from termcolor import cprint
 from functools import wraps
+
+# Third Party
+from termcolor import cprint
 
 
 def log(message, log_condition=None):

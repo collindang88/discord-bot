@@ -1,5 +1,7 @@
+# Standard Library
 import os
-import openai
+
+# Third Party
 from dotenv import load_dotenv
 
 load_dotenv()

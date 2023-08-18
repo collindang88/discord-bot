@@ -1,5 +1,8 @@
-from src.utils.c_log import log
+# Third Party
 import openai
+
+# First Party
+from src.utils.c_log import log
 
 conversations = {}
 

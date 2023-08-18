@@ -1,5 +1,8 @@
-from src.utils.c_log import log
+# Third Party
 import requests
+
+# First Party
+from src.utils.c_log import log
 from src.utils.constants import OPENWEATHERMAP_API_KEY
 
 
