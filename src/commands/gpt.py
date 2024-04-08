@@ -1,16 +1,24 @@
 # Third Party
 import openai
+import datetime as dt
+from termcolor import cprint
 
 # First Party
 from src.utils.c_log import log
 
 conversations = {}
 
+async def send_response_chunks(ctx, message_chunks):
+    for chunk in message_chunks:
+        await ctx.send(chunk)
 
-@log("contacting gpt")
 async def gpt(ctx):
     user_id = str(ctx.author.id)
     prompt = ctx.message.content[4:].strip()
+
+    if user_id == '686643495062339611': # banning eli
+        await ctx.send('you have been target banned from using this bot by collin')
+        return
 
     if user_id not in conversations:
         conversations[user_id] = [
@@ -18,9 +26,11 @@ async def gpt(ctx):
         ]
     conversations[user_id].append({"role": "user", "content": prompt})
 
+    cprint(f"[{dt.datetime.now()}] User ID: {user_id}", "green")
+
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4-0314", messages=conversations[user_id]
+            model="gpt-4-0125-preview", messages=conversations[user_id]
         )
         response_content = response.choices[0].message.content.strip()
         message_chunks = [
@@ -31,8 +41,7 @@ async def gpt(ctx):
             {"role": "assistant", "content": response_content}
         )
 
-        for chunk in message_chunks:
-            await ctx.send(chunk)
+        await send_response_chunks(ctx, message_chunks)
 
     except Exception as e:
         await ctx.send(f"Error: {str(e)}")
